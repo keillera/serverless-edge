@@ -51,3 +51,19 @@ Resources:
     Properties:
       FunctionName: !Ref OriginResponseFunction
       Description: "A version of OriginResponseFunction"
+
+  ViewerRequestSendTokenCryptoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./dist/crypto.zip
+      Handler: index.handler
+      Runtime: nodejs8.10
+      MemorySize: 128
+      Timeout: 1
+      Role: !GetAtt EdgeLambdaRole.Arn
+
+  ViewerRequestSendTokenCryptoFunctionVersion:
+    Type: "AWS::Lambda::Version"
+    Properties:
+      FunctionName: !Ref ViewerRequestSendTokenCryptoFunction
+      Description: "A version of ViewerRequestSendTokenCryptoFunction"
